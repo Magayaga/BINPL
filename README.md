@@ -18,6 +18,18 @@ $ git clone https://github.com/magayaga/BINPL.git
 $ cd BINPL
 ```
 
+Then you can build and run:
+
+```bash
+# Build and run (Choose the clang or rust)
+$ clang src/binpl.c -o binpl
+$ clang src/binpl.cpp -o binpl
+$ rustc src/binpl.rs
+
+# Open
+./binpl examples/main.binpl
+```
+
 ## Copyright
 
 Copyright (c) 2024 Cyril John Magayaga. All rights reserved.
