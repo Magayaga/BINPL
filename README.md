@@ -8,6 +8,8 @@
 
 BINPL (also known as **Binary-like Programming Language**) is a low-level programming language that binary codes to execute machine code programs, decimal number systems, or hexadecimal number systems. It is the program that reads binary data from a file and interprets it based on the specified mode (decimal, hexadecimal, or ASCII character). It was written in **C**, **C++**, and **Rust** programming languages. It was created and developed on February 25, 2024, by Cyril John Magayaga, who is the best known for the [Hyzero](https://github.com/magayaga/hyzero) and [Xenly](https://github.com/magayaga/xenly) programming languages.
 
+BINPL is the available for the **Windows** operating systems.
+
 ## Getting start
 
 If you do want to try out Carbon locally, you'll need to install our build dependencies (Clang, rust, git) and check out the Carbon repository, for example on Debian or Ubuntu:
