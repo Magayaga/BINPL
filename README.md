@@ -1,4 +1,10 @@
-# BINPL
+<p align="center">
+  <a href="https://github.com/Magayaga/CyNeo">
+    <img src="assets/logo.svg" width="200" height="200">
+  </a>
+</p>
+
+<h1 align="center">BINPL</h1>
 
 BINPL (also known as **Binary-like Programming Language**) is a low-level programming language that binary codes to execute machine code programs, decimal number systems, or hexadecimal number systems. It was created and developed on February 25, 2024, by Cyril John Magayaga. It is the program that reads binary data from a file and interprets it based on the specified mode (decimal, hexadecimal, or ASCII character). It was written in **C**, **C++**, and **Rust** programming languages.
 
