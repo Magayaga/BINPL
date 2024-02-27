@@ -12,15 +12,9 @@ BINPL is the available for the **Windows** operating systems.
 
 ## Getting start
 
-If you do want to try out Carbon locally, you'll need to install our build dependencies (Clang, rust, git) and check out the Carbon repository, for example on Debian or Ubuntu:
+If you do want to try out BINPL locally, you'll need to install our build dependencies (Clang, rust, git) and check out the BINPL repository, for example on Windows:
 
 ```bash
-# Update apt-get
-$ sudo apt-get update
-
-# Install tools
-$ sudo apt-get install clang rust git
-
 # Download BINPL's code
 $ git clone https://github.com/magayaga/BINPL.git
 $ cd BINPL
