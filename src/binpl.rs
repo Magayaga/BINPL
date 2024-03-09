@@ -215,11 +215,16 @@ use std::io::Read;
 
 const BINPL_VERSION: &str = "v1.0-preview0";
 
+// Interpretation mode enum
+enum InterpretationMode {
+    Ascii,
+    Decimal,
+    Hexadecimal,
+}
+
 fn main() {
-    // Collect command line arguments into a vector of strings
     let args: Vec<String> = env::args().collect();
-    
-    // Check for the correct number of command line arguments
+
     if args.len() != 2 && args.len() != 3 {
         println!("Usage: binpl [binary file]");
         return;
@@ -235,86 +240,84 @@ fn main() {
         println!("       --author              Author information.");
         return;
     }
-    
-    else if args.len() == 2 && (args[1] == "-v" || args[1] == "--version") {
-        // Print version information
+
+    // Display version information
+    if args.len() == 2 && (args[1] == "-v" || args[1] == "--version") {
         println!("{}", BINPL_VERSION);
         return;
     }
-    
-    else if args.len() == 2 && args[1] == "--author" {
-        // Print author information
+
+    // Display author information
+    if args.len() == 2 && args[1] == "--author" {
         println!("Copyright (c) 2024 Cyril John Magayaga");
         return;
     }
-    
-    // Open the file specified in the command line argument
-    let file_name = &args[1];
-    let mut file = match File::open(file_name) {
+
+    let mut file = match File::open(&args[1]) {
         Ok(f) => f,
         Err(_) => {
-            println!("Error: Unable to open file '{}'", file_name);
+            println!("Error: Unable to open file '{}'", &args[1]);
             return;
         }
     };
 
-    // Read the contents of the file into a string
     let mut binary_code = String::new();
     if let Err(_) = file.read_to_string(&mut binary_code) {
-        println!("Error: Unable to read file '{}'", file_name);
+        println!("Error: Unable to read file '{}'", &args[1]);
         return;
     }
 
-    // Determine the interpretation mode based on command line arguments
-    let decimal_mode = if args.len() == 3 && (args[2] == "-d" || args[2] == "--decimal") {
-        true
-    }
-    
-    else {
-        false
-    };
+    let mut decimal_mode = false;
+    let mut hexadecimal_mode = false;
 
-    let hexadecimal_mode = if args.len() == 3 && (args[2] == "-h" || args[2] == "--hexadecimal") {
-        true
+    if args.len() == 3 {
+        match args[2].as_str() {
+            "-d" | "--decimal" => decimal_mode = true,
+            "-h" | "--hexadecimal" => hexadecimal_mode = true,
+            _ => {
+                println!("Error: Invalid option '{}'", &args[2]);
+                return;
+            }
+        }
     }
-    
-    else {
-        false
-    };
 
-    // Interpret the binary code based on the selected mode
     interpret_binary(&binary_code, decimal_mode, hexadecimal_mode);
 }
 
-// Function to interpret binary code
 fn interpret_binary(binary_code: &str, decimal_mode: bool, hexadecimal_mode: bool) {
     let len = binary_code.len();
-    
-    // Check if the length of the binary string is a multiple of 8
+
+    // Make sure the length is a multiple of 8
     if len % 8 != 0 {
         println!("Error: Invalid binary string length");
         return;
     }
-    
-    // Iterate through the binary string, interpreting each group of 8 bits
-    for chunk in binary_code.chars().collect::<Vec<_>>().chunks(8) {
+
+    let mut result = String::new();
+    let mut i = 0;
+    while i < len {
         let mut decimal_value = 0;
-        // Convert each group of 8 bits to decimal value
-        for &bit in chunk {
-            decimal_value = (decimal_value << 1) | (bit as i32 - '0' as i32);
+        let mut j = 0;
+        while j < 8 {
+            decimal_value = (decimal_value << 1) | (binary_code[i + j..i + j + 1].parse::<u8>().unwrap());
+            j += 1;
         }
-        // Print the decimal value, hexadecimal value, or ASCII character based on the mode
+
         if decimal_mode {
-            print!("{} ", decimal_value);
+            result.push_str(&format!("{} ", decimal_value));
         }
         
         else if hexadecimal_mode {
-            print!("{:02X} ", decimal_value);
+            result.push_str(&format!("{:02X} ", decimal_value));
         }
         
         else {
-            print!("{}", (decimal_value as u8) as char);
+            result.push(decimal_value as u8 as char);
         }
+
+        i += 8;
     }
-    println!();
+
+    println!("{}", result);
 }
+
