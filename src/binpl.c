@@ -215,6 +215,8 @@ Copyright (c) 2024 Cyril John Magayaga
 
 #define BINPL_VERSION "v1.0-preview0"
 
+#ifdef _WIN32
+
 // Function prototypes
 void interpretBinary(const char *binaryCode, int decimalMode, int hexadecimalMode);
 
@@ -320,3 +322,11 @@ void interpretBinary(const char *binaryCode, int decimalMode, int hexadecimalMod
     }
     printf("\n");
 }
+
+#else
+// For non-Windows systems, just provide a placeholder main function
+int main() {
+    printf("This program is only available for Windows.\n");
+    return 1;
+}
+#endif
