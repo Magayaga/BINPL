@@ -6,9 +6,9 @@
 
 <h1 align="center">BINPL</h1>
 
-BINPL (also known as **Binary-like Programming Language**) is a low-level programming language that binary codes to execute machine code programs, decimal number systems, or hexadecimal number systems. It is the program that reads binary data from a file and interprets it based on the specified mode (decimal, hexadecimal, or ASCII character). It was written in **C**, **C++**, and **Rust** programming languages. It was created and developed on February 25, 2024, by Cyril John Magayaga, who is the best known for the [Hyzero](https://github.com/magayaga/hyzero) and [Xenly](https://github.com/magayaga/xenly) programming languages.
+BINPL (also known as **Binary-like Programming Language**) is a low-level programming language that binary codes to execute machine code programs, decimal number systems, or hexadecimal number systems. It is the program that reads binary data from a file and interprets it based on the specified mode (decimal, hexadecimal, or ASCII character). It was written in **C**, **C++**, and **Rust** programming languages. It was created and developed on February 25, 2024, by Cyril John Magayaga, who is best known for the [Hyzero](https://github.com/magayaga/hyzero) and [Xenly](https://github.com/magayaga/xenly) programming languages.
 
-BINPL is the available for the **Windows** operating systems.
+BINPL is available on February 25, 2024 for the **Windows** operating system.
 
 ## Getting start
 
@@ -24,9 +24,9 @@ Then you can build and run:
 
 ```bash
 # Build and run (Choose the clang or rust)
-$ clang src/binpl.c -o binpl
-$ clang src/binpl.cpp -o binpl
-$ rustc src/binpl.rs
+$ clang src/win/binpl.c -o binpl
+$ clang src/win/binpl.cpp -o binpl
+$ rustc src/win/binpl.rs
 
 # Open
 ./binpl examples/main.binpl
