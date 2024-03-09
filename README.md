@@ -24,9 +24,9 @@ Then you can build and run:
 
 ```bash
 # Build and run (Choose the clang or rust)
-$ clang src/win/binpl.c -o binpl
-$ clang src/win/binpl.cpp -o binpl
-$ rustc src/win/binpl.rs
+$ clang src/binpl.c -o binpl
+$ clang src/binpl.cpp -o binpl
+$ rustc src/binpl.rs
 
 # Open
 ./binpl examples/main.binpl
