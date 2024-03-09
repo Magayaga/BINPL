@@ -1,6 +1,6 @@
 /*
 
-BINPL (v1.0-preview1 / February 25, 2024)
+BINPL (v1.0-preview0 / February 25, 2024)
 Copyright (c) 2024 Cyril John Magayaga
 
 -------------------------------------------------------------------------------
@@ -208,6 +208,7 @@ Copyright (c) 2024 Cyril John Magayaga
    limitations under the License.
    
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
