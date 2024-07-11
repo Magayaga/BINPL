@@ -4,7 +4,7 @@ BINPL (v1.0-preview1 / July 12, 2024)
 Copyright (c) 2024 Cyril John Magayaga
 
 */
-const BINPL_VERSION = "v1.0-preview0";
+const BINPL_VERSION = "v1.0-preview1";
 
 // Function to interpret binary code
 function interpretBinary(binaryCode: string, decimalMode: boolean, hexadecimalMode: boolean): void {
