@@ -37,6 +37,20 @@ $ rustc src/binpl.rs
 ./binpl examples/main.binpl
 ```
 
+**C#** with Dotnet
+```bash
+# Build and run
+$ cd src/csharp/binpl
+$ dotnet build
+```
+
+**Go**
+```bash
+# Build and run
+$ go run src/binpl.go
+$ go build src/binpl.go
+```
+
 ### Interpreters
 
 **JavaScript** and **TypeScript**
@@ -59,6 +73,18 @@ $ python src/binpl.py
 ```bash
 # Run (Lua)
 $ lua src/binpl.lua
+```
+
+**Julia**
+```bash
+# Run (Julia)
+$ julia src/binpl.jl
+```
+
+**Ruby**
+```bash
+# Run (Ruby)
+$ ruby src/binpl.rb
 ```
 
 ## Copyright
