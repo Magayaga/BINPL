@@ -44,6 +44,14 @@ $ cd src/csharp/binpl
 $ dotnet build
 ```
 
+**Java**
+```bash
+# Build and run
+$ cd src
+$ javac -source 8 -target 8 binpl.java
+$ java binpl
+```
+
 **Go**
 ```bash
 # Build and run
