@@ -1,6 +1,6 @@
 /*
 
-BINPL (v1.0-preview0 / February 25, 2024)
+BINPL (v1.0-preview1 / July 12, 2024)
 Copyright (c) 2024 Cyril John Magayaga
 
 -------------------------------------------------------------------------------
@@ -211,16 +211,9 @@ Copyright (c) 2024 Cyril John Magayaga
     
 use std::env;
 use std::fs::File;
-use std::io::Read;
+use std::io::{BufRead, BufReader};
 
-const BINPL_VERSION: &str = "v1.0-preview0";
-
-// Interpretation mode enum
-enum InterpretationMode {
-    Ascii,
-    Decimal,
-    Hexadecimal,
-}
+const BINPL_VERSION: &str = "v1.0-preview1";
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -253,7 +246,7 @@ fn main() {
         return;
     }
 
-    let mut file = match File::open(&args[1]) {
+    let file = match File::open(&args[1]) {
         Ok(f) => f,
         Err(_) => {
             println!("Error: Unable to open file '{}'", &args[1]);
@@ -261,11 +254,7 @@ fn main() {
         }
     };
 
-    let mut binary_code = String::new();
-    if let Err(_) = file.read_to_string(&mut binary_code) {
-        println!("Error: Unable to read file '{}'", &args[1]);
-        return;
-    }
+    let reader = BufReader::new(file);
 
     let mut decimal_mode = false;
     let mut hexadecimal_mode = false;
@@ -281,7 +270,20 @@ fn main() {
         }
     }
 
-    interpret_binary(&binary_code, decimal_mode, hexadecimal_mode);
+    for line in reader.lines() {
+        match line {
+            Ok(l) => {
+                if l.starts_with(";;") {
+                    continue;
+                }
+                interpret_binary(&l, decimal_mode, hexadecimal_mode);
+            }
+            Err(_) => {
+                println!("Error: Unable to read line");
+                return;
+            }
+        }
+    }
 }
 
 fn interpret_binary(binary_code: &str, decimal_mode: bool, hexadecimal_mode: bool) {
@@ -320,4 +322,3 @@ fn interpret_binary(binary_code: &str, decimal_mode: bool, hexadecimal_mode: boo
 
     println!("{}", result);
 }
-

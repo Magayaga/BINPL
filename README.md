@@ -6,7 +6,9 @@
 
 <h1 align="center">BINPL</h1>
 
-BINPL (also known as **Binary-like Programming Language**) is an interpreted low-level programming language that binary codes to execute machine code programs, decimal number systems, or hexadecimal number systems. It is the program that reads binary data from a file and interprets it based on the specified mode (decimal, hexadecimal, or ASCII character). It was written in **C**, **C++**, and **Rust** programming languages. It was created and developed on February 25, 2024, by Cyril John Magayaga, who is best known for the [Hyzero](https://github.com/magayaga/hyzero) and [Xenly](https://github.com/magayaga/xenly) programming languages.
+BINPL (also known as **Binary-like Programming Language**) is an interpreted low-level programming language that binary codes to execute machine code programs, decimal number systems, or hexadecimal number systems. It is the program that reads binary data from a file and interprets it based on the specified mode (decimal, hexadecimal, or ASCII character).
+
+It was written in **C**, **C++**, **Rust**, **JavaScript**, **TypeScript**, and **Python** programming languages. It was created and developed on February 25, 2024, by Cyril John Magayaga, who is best known for the [Hyzero](https://github.com/magayaga/hyzero) and [Xenly](https://github.com/magayaga/xenly) programming languages.
 
 BINPL is available on February 25, 2024 for the **Windows** operating system. Adding **Linux** and **macOS** operating systems.
 
@@ -22,6 +24,7 @@ $ cd BINPL
 
 Then you can build and run:
 
+**C**, **C++**, and **Rust**
 ```bash
 # Build and run (Choose the clang or rust)
 $ clang src/binpl.c -o binpl
@@ -30,6 +33,22 @@ $ rustc src/binpl.rs
 
 # Open
 ./binpl examples/main.binpl
+```
+
+**JavaScript** and **TypeScript**
+```bash
+# Run node (JavaScript)
+$ node src/binpl.js
+
+# Run deno or bun (TypeScript)
+$ deno run src/deno/binpl.ts
+$ bun run src/bun/binpl.ts
+```
+
+**Python**
+```bash
+# Run (Python)
+$ python src/binpl.py
 ```
 
 ## Copyright

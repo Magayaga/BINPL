@@ -1,0 +1,21 @@
+{
+  "name": "binpl",
+  "version": "v1.0-preview1",
+  "description": "Binary-like programming language!",
+  "main": "src/binpl.js",
+  "directories": {
+    "example": "src"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "binpl"
+  ],
+  "author": "Cyril John Magayaga",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}

@@ -1,6 +1,6 @@
 /*
 
-BINPL (v1.0-preview0 / February 25, 2024)
+BINPL (v1.0-preview1 / July 12, 2024)
 Copyright (c) 2024 Cyril John Magayaga
 
 -------------------------------------------------------------------------------
@@ -212,8 +212,9 @@ Copyright (c) 2024 Cyril John Magayaga
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
-#define BINPL_VERSION "v1.0-preview0"
+#define BINPL_VERSION "v1.0-preview1"
 
 // Function prototypes
 void interpretBinary(const std::string &binaryCode, int decimalMode, int hexadecimalMode);
@@ -235,12 +236,12 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    else if (argc == 2 && (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0)) {
+    if (argc == 2 && (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0)) {
         std::cout << BINPL_VERSION << std::endl;
         return 0;
     }
 
-    else if (argc == 2 && (strcmp(argv[1], "--author") == 0)) {
+    if (argc == 2 && (strcmp(argv[1], "--author") == 0)) {
         std::cout << "Copyright (c) 2024 Cyril John Magayaga" << std::endl;
         return 0;
     }
@@ -251,7 +252,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    std::string binaryCode((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    std::string binaryCode = buffer.str();
     file.close();
 
     int decimalMode = 0; // Default mode: ASCII interpretation
@@ -261,18 +264,24 @@ int main(int argc, char *argv[]) {
         if (strcmp(argv[2], "-d") == 0 || strcmp(argv[2], "--decimal") == 0) {
             decimalMode = 1;
         }
-
+        
         else if (strcmp(argv[2], "-h") == 0 || strcmp(argv[2], "--hexadecimal") == 0) {
             hexadecimalMode = 1;
         }
-
+        
         else {
             std::cerr << "Error: Invalid option '" << argv[2] << "'" << std::endl;
             return 1;
         }
     }
 
-    interpretBinary(binaryCode, decimalMode, hexadecimalMode);
+    std::istringstream stream(binaryCode);
+    std::string line;
+    while (std::getline(stream, line)) {
+        if (line.rfind(";;", 0) != 0) {
+            interpretBinary(line, decimalMode, hexadecimalMode);
+        }
+    }
 
     return 0;
 }
@@ -292,14 +301,15 @@ void interpretBinary(const std::string &binaryCode, int decimalMode, int hexadec
         for (int j = 0; j < 8; j++) {
             decimalValue = (decimalValue << 1) | (binaryCode[i + j] - '0');
         }
+        
         if (decimalMode) {
             std::cout << decimalValue << " ";
         }
-
+        
         else if (hexadecimalMode) {
             std::cout << std::hex << decimalValue << " ";
         }
-
+        
         else {
             std::cout << static_cast<char>(decimalValue);
         }
